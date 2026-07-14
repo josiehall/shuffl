@@ -14,24 +14,11 @@
   }
 
   body {
-    @apply bg-paper text-ink font-sans antialiased;
-    /* Faint felt texture so the "paper" isn't a flat fill */
-    background-image:
-      radial-gradient(circle at 12% 18%, rgba(226, 59, 38, 0.05), transparent 42%),
-      radial-gradient(circle at 88% 8%, rgba(205, 235, 75, 0.14), transparent 40%),
-      radial-gradient(circle at 78% 92%, rgba(226, 59, 38, 0.04), transparent 45%);
-    background-attachment: fixed;
+    @apply bg-bone text-noir font-archivo antialiased;
   }
 
   ::selection {
-    @apply bg-lime text-ink;
-  }
-
-  h1,
-  h2,
-  h3 {
-    @apply font-display;
-    letter-spacing: -0.02em;
+    @apply bg-neon text-noir;
   }
 }
 

@@ -203,15 +203,11 @@ export default function EmployersPage() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.35 }}
               >
-                Host a Shuffl placement and you get an experienced career-changer —
-                someone who’s spent a decade running things, not fetching coffee —
-                on something that actually matters to you. A teacher who’s managed a
-                classroom of thirty can fix your onboarding, sharpen how your team
-                explains things, or take the nagging project no one’s had time for.
-                You get real work done and an honest outside read on your business —
-                for the price of a desk and a bit of your time. And if they turn out
-                to be brilliant, which they often are, you’ve met your next hire the
-                honest way.
+                Host a Shuffl placement and put an experienced career-changer to
+                work on something real. A teacher who’s run a classroom of thirty
+                can fix your onboarding, mentor your juniors, or clear the project
+                no one’s had time for — and if they’re brilliant, you’ve found your
+                next hire the honest way.
               </motion.p>
 
               <motion.div

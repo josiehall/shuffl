@@ -3,17 +3,14 @@ import { AnimatePresence, motion } from 'framer-motion'
 import NavV2 from './components/v2/NavV2.jsx'
 import FooterV2 from './components/v2/FooterV2.jsx'
 import { Reveal } from './components/primitives.jsx'
+import { postSubmission } from './lib/submit.js'
 
-/* --------------------------------------------------------------------------
- * TODO(backend): employer interest capture. Kept SEPARATE from the candidate
- * waitlist on purpose so the two audiences don't muddy each other's numbers —
- * note `audience: 'employer'` in the payload. Wire to the same provider as
- * WaitlistV2.jsx (Formspree / Mailchimp / Airtable), or a separate list.
- * ------------------------------------------------------------------------ */
+/*
+ * Employer interest goes to a SEPARATE Airtable table ("Employers") from the
+ * candidate waitlist, so the two audiences never muddy each other's numbers.
+ */
 async function submitEmployerInterest(payload) {
-  // TODO(backend): replace with a real POST.
-  console.log('[Shuffl employers] interest registered →', payload)
-  await new Promise((r) => setTimeout(r, 550))
+  return postSubmission({ type: 'employer', ...payload })
 }
 
 const BENEFITS = [

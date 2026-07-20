@@ -1,21 +1,18 @@
 import { useState } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
+import { postSubmission } from '../../lib/submit.js'
 
-/* --------------------------------------------------------------------------
- * TODO(backend): same as v1 — wire these to Formspree / Mailchimp / Airtable.
- * See src/components/Waitlist.jsx for provider examples. Keep `email` as the
- * shared key so pay-preference lands on the same record as the sign-up.
- * ------------------------------------------------------------------------ */
+/*
+ * Both calls go to /api/submit, which writes to Airtable server-side (the API
+ * token never reaches the browser). The pricing answers are matched onto the
+ * sign-up row by `email`, so they land on the same record.
+ */
 async function submitEmail(payload) {
-  // TODO(backend): replace with a real POST.
-  console.log('[Shuffl v2 waitlist] new sign-up →', payload)
-  await new Promise((r) => setTimeout(r, 550))
+  return postSubmission({ type: 'waitlist', ...payload })
 }
 
 async function submitWillingnessToPay(payload) {
-  // TODO(backend): PATCH/append to the record created above, keyed by email.
-  console.log('[Shuffl v2 waitlist] willingness-to-pay →', payload)
-  await new Promise((r) => setTimeout(r, 450))
+  return postSubmission({ type: 'wtp', ...payload })
 }
 
 // Pay STRUCTURE preference — qualitative on purpose. No invented prices (we've
@@ -65,10 +62,12 @@ export default function WaitlistV2() {
     if (wtpStatus === 'loading') return
     setWtpStatus('loading')
     try {
+      // Send the human-readable labels, not the internal ids, so the Airtable
+      // rows read as "Pay on placement" / "£250–£1,000" rather than "placement".
       await submitWillingnessToPay({
         email,
-        payPreference: pref,
-        fairPrice: band,
+        payPreference: PAY_PREFS.find((p) => p.id === pref)?.title || '',
+        fairPrice: PRICE_BANDS.find((b) => b.id === band)?.label || '',
         ts: new Date().toISOString(),
       })
       setStage('done')

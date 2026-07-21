@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react'
 import ReactDOM from 'react-dom/client'
+import { Analytics } from '@vercel/analytics/react'
 import App from './AppV2.jsx'
 import EmployersPage from './EmployersPage.jsx'
 import './index.css'
@@ -25,7 +26,15 @@ function Root() {
     }
   }, [])
 
-  return isEmployers ? <EmployersPage /> : <App />
+  return (
+    <>
+      {isEmployers ? <EmployersPage /> : <App />}
+      {/* Vercel Web Analytics — cookieless page views, so no consent banner
+       * required. Must also be enabled in the Vercel dashboard (Analytics tab)
+       * or the beacon collects nothing. No-ops during local dev. */}
+      <Analytics />
+    </>
+  )
 }
 
 ReactDOM.createRoot(document.getElementById('root')).render(

@@ -8,6 +8,7 @@ export function scrollToId(id) {
 const SECTION_LINKS = [
   { id: 'how', label: 'How it works' },
   { id: 'teachers', label: 'For teachers' },
+  { id: 'translator', label: 'Skills translator' },
   { id: 'faq', label: 'FAQ' },
 ]
 
@@ -57,7 +58,7 @@ export default function NavV2({ page = 'home' }) {
           SHUFFL<span className="text-neon">.</span>
         </a>
 
-        <div className="hidden items-center gap-8 md:flex">
+        <div className="hidden items-center gap-6 lg:flex xl:gap-8">
           {SECTION_LINKS.map((l) =>
             isHome ? (
               <button key={l.id} onClick={() => scrollToId(l.id)} className={linkClass}>
@@ -99,7 +100,7 @@ export default function NavV2({ page = 'home' }) {
         </div>
 
         {/* Mobile: cross-page tab + CTA */}
-        <div className="flex items-center gap-3 md:hidden">
+        <div className="flex items-center gap-3 lg:hidden">
           <a href={isHome ? '/employers' : '/'} className={linkClass}>
             {isHome ? 'Employers' : 'Candidates'}
           </a>
